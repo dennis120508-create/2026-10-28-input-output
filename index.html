@@ -1399,7 +1399,6 @@
             <div class="u">新台幣</div>
           </div>
         </div>
-        <p class="quant" id="quant"></p>
 
         <div class="stage">
           <h2>抽卡模擬</h2>
@@ -1738,9 +1737,6 @@
         cfg.E = E;
         countUp($('evPulls'), E, E < 100 ? 2 : 1);
         countUp($('evCost'), E * price, 0, 'NT$');
-        const q50 = quantile(cfg, .5), q90 = quantile(cfg, .9);
-        $('quant').innerHTML = `一半的人在 <b>${fmt(q50)}</b> 抽內命中（NT$${fmt(q50 * price)}），九成的人在 <b>${fmt(q90)}</b> 抽內命中（NT$${fmt(q90 * price)}）` +
-          (pityOn ? `；最差情況 <b>${fmt(pity)}</b> 抽（NT$${fmt(pity * price)}）。` : '；無保底時沒有上限。');
         reset();
       }
 
@@ -1794,7 +1790,7 @@
           c.className = 'card ' + (r.hit ? 'hit' : 'miss');
           c.style.animationDelay = (i * 45) + 'ms';
           c.setAttribute('aria-label', r.hit ? `第 ${r.idx} 抽命中` : `第 ${r.idx} 抽未中`);
-          c.innerHTML = `<div class="inner"><div class="face back">✦</div><div class="face front"><div class="gem"></div><div class="stars">${r.hit ? '★★★★★' : '★★★'}</div><div class="n">#${r.idx}</div></div></div>`;
+          c.innerHTML = `<div class="inner"><div class="face back">✦</div><div class="face front"><div class="gem"></div><div class="stars">${r.hit ? '★★★★★' : '★★★'}</div><div class="n">${r.idx}</div></div></div>`;
           box.appendChild(c); return c;
         });
 
